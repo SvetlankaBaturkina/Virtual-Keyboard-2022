@@ -1,0 +1,89 @@
+.use-keyboard-input {
+    position: absolute;
+    height: 100px;
+    width: 70%;
+    margin-top: 35px;
+    right: 15%;
+}
+
+.title {
+    text-align: center;
+    padding-top: 35px;
+}
+
+.keyboard {
+    width: 900px;
+    margin: 235px auto 0 auto;
+    border: 2px solid;
+    background-color: rgba(83, 85, 82, 0.904);
+}
+
+.keyboard__keys {
+    width: 830px;
+    margin: 35px auto 35px auto;
+}
+
+.keyboard__key {
+    width: 50px;
+    height: 50px;
+    color: white;
+    background-color: rgba(83, 85, 82, 0.904);
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.keyboard__key:hover {
+    cursor: pointer;
+}
+
+.keyboard__key--backquote,
+.keyboard__key--backspace {
+    width: 10.2%;
+}
+
+.keyboard__key--tab,
+.keyboard__key--slash {
+    width: 7%;
+}
+
+.keyboard__key--space {
+    width: 37.5%;
+    padding-top: 10px;
+}
+
+.keyboard__key--space:before  {
+    content: "";
+}
+
+.keyboard__key--slash:before {
+    content: '\005C';
+}
+
+.keyboard__key--caps_lock,
+.keyboard__key--enter {
+    width: 13.5%;
+}
+
+.keyboard__key--left:before {
+    content: '\2190';
+}
+
+.keyboard__key--up:before {
+    content: '\2191';
+}
+
+.keyboard__key--down:before {
+    content: '\2193';
+}
+
+.keyboard__key--right:before {
+    content: '\2192';
+}
+
+.keyboard__key--shift {
+    width: 10.3%;
+}
+
+.keyboard__key--ctrl {
+    width: 10.9%;
+}

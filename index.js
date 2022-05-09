@@ -308,6 +308,8 @@ const Keyboard = {
                 case "left":
                     keyElement.classList.add("keyboard__key--left");
                     keyElement.addEventListener("click", (event) => {
+                        this.properties.value += "←";
+                        this.triggerEvent("oninput");
                         Keyboard.activeElement ();
                         event.target.classList.add('keyboard__key--animate');
                     });
@@ -316,6 +318,8 @@ const Keyboard = {
                 case "up":
                     keyElement.classList.add("keyboard__key--up");
                     keyElement.addEventListener("click", (event) => {
+                        this.properties.value += "↑";
+                        this.triggerEvent("oninput");
                         Keyboard.activeElement ();
                         event.target.classList.add('keyboard__key--animate');
                     });
@@ -324,6 +328,8 @@ const Keyboard = {
                 case "down":
                     keyElement.classList.add("keyboard__key--down");
                     keyElement.addEventListener("click", (event) => {
+                        this.properties.value += "↓";
+                        this.triggerEvent("oninput");
                         Keyboard.activeElement ();
                         event.target.classList.add('keyboard__key--animate');
                     });
@@ -332,6 +338,8 @@ const Keyboard = {
                 case "right":
                     keyElement.classList.add("keyboard__key--right");
                     keyElement.addEventListener("click", (event) => {
+                        this.properties.value += "→";
+                        this.triggerEvent("oninput");
                         Keyboard.activeElement ();
                         event.target.classList.add('keyboard__key--animate');
                     });
@@ -341,6 +349,19 @@ const Keyboard = {
                     keyElement.classList.add("keyboard__key--shift");
                     keyElement.innerHTML = "shift";
                     keyElement.addEventListener("click", (event) => {
+                        this.toggleShift();
+                        keyElement.classList.toggle("keyboard__key--active", this.properties.shift);
+                        Keyboard.activeElement ();
+                        event.target.classList.add('keyboard__key--animate');
+                    });
+                    break;
+
+                case "alt":
+                    keyElement.classList.add("keyboard__key--alt");
+                    keyElement.innerHTML = "alt";
+                    keyElement.addEventListener("click", (event) => {
+                        this.properties.value += "";
+                        this.triggerEvent("oninput");
                         Keyboard.activeElement ();
                         event.target.classList.add('keyboard__key--animate');
                     });
@@ -350,6 +371,8 @@ const Keyboard = {
                     keyElement.classList.add("keyboard__key--ctrl");
                     keyElement.innerHTML = "ctrl";
                     keyElement.addEventListener("click", (event) => {
+                        this.properties.value += "";
+                        this.triggerEvent("oninput");
                         Keyboard.activeElement ();
                         event.target.classList.add('keyboard__key--animate');
                     });
@@ -413,6 +436,15 @@ const Keyboard = {
         for (const key of this.elements.keys) {
             if (key.childElementCount === 0) {
                 key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
+            }
+        }
+    },
+
+    toggleShift() {
+        this.properties.shift = !this.properties.shift;
+        for (const key of this.elements.keys) {
+            if (key.childElementCount === 0) {
+                key.textContent = this.properties.shift ? key.textContent.charAt(0).toUpperCase() : key.textContent.toLowerCase();
             }
         }
     },

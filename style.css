@@ -4,6 +4,7 @@
     width: 70%;
     margin-top: 35px;
     right: 15%;
+    font-size: 25px;  
 }
 
 .title {
@@ -86,4 +87,33 @@
 
 .keyboard__key--ctrl {
     width: 10.9%;
+}
+
+.keyboard__key--active {
+    background-color: #bb9d42;
+}
+
+/* Анимация */
+.keyboard__key--animate {
+    
+    animation: animate_reduce 1s 1;
+    background: #F7CA18;
+    border: solid px #bb9d42;
+    color: black;
+}
+
+.animate {
+    animation: animate_reduce 1s 1;
+}
+
+@keyframes animate_reduce {
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+    50% {
+        transform: scale3d(0.95, 0.95, 0.95);
+    }
+    100% {
+        transform: scale3d(1, 1, 1);
+    }
 }

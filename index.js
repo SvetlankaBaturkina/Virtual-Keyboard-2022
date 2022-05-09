@@ -1,3 +1,148 @@
+    // Объект для смены языка клавиатуры 
+const i18Obj = {
+    'en': {
+          '`': '`',
+          '1': '1',
+          '2': '2',
+          '3': '3',
+          '4': '4',
+          '5': '5',
+          '6': '6',
+          '7': '7',
+          '8': '8',
+          '9': '9',
+          '0': '0',
+          '-': '-',
+          '=': '=',
+          'backspace': 'backspace',
+          'tab': 'tab',
+          '1': '1',
+          '2': '2',
+          '3': '3',
+          '4': '4',
+          '5': '5',
+          '6': '6',
+          '7': '7',
+          '8': '8',
+          '9': '9',
+          '0': '0',
+          '-': '-',
+          '=': '=',
+          'q': 'q',
+          'w': 'w',
+          'e': 'e',
+          'r': 'r',
+          't': 't',
+          'y': 'y',
+          'u': 'u',
+          'i': 'i',
+          'o': 'o',
+          'p': 'p',
+          '[': '[',
+          ']': ']',
+          'slash': 'slash',
+          'delete': 'delete',
+          'caps lock': 'caps lock',
+          'a': 'a',
+          's': 's',
+          'd': 'd',
+          'f': 'f',
+          'g': 'g',
+          'h': 'h',
+          'j': 'j',
+          'k': 'k',
+          'l': 'l',
+          ';': ';',
+          "'": "'",
+          'enter': 'enter',
+          'shift': 'shift',
+          'z': 'z',
+          'x': 'x',
+          'c': 'c',
+          'v': 'v',
+          'b': 'b',
+          'n': 'n',
+          'm': 'm',
+          ',': ',',
+          '.': '.',
+          '/': '/',
+          'up': 'up',
+          'ru': 'ru',
+          'ctrl': 'ctrl',
+          'win': 'win',
+          'alt': 'alt',
+          'space': " ",
+          'left': 'left',
+          'down': 'down',
+          'right': 'right',
+        },
+
+        'ru': {
+          '`': 'ё',
+          '1': '1',
+          '2': '2',
+          '3': '3',
+          '4': '4',
+          '5': '5',
+          '6': '6',
+          '7': '7',
+          '8': '8',
+          '9': '9',
+          '0': '0',
+          '-': '-',
+          '=': '=',
+          'backspace': 'backspace',
+          'tab': 'tab',
+          'q': 'й',
+          'w': 'ц',
+          'e': 'у',
+          'r': 'к',
+          't': 'е',
+          'y': 'н',
+          'u': 'г',
+          'i': 'ш',
+          'o': 'щ',
+          'p': 'з',
+          '[': 'х',
+          ']': 'ъ',
+          'delete': 'delete',
+          'slash': 'slash',
+          'caps lock': 'caps lock',
+          'a': 'ф',
+          's': 'ы',
+          'd': 'в',
+          'f': 'а',
+          'g': 'п',
+          'h': 'р',
+          'j': 'о',
+          'k': 'л',
+          'l': 'д',
+          ';': 'ж',
+          "'": "э",
+          'enter': 'enter',
+          'shift': 'shift',
+          'z': 'я',
+          'x': 'ч',
+          'c': 'с',
+          'v': 'м',
+          'b': 'и',
+          'n': 'т',
+          'm': 'ь',
+          ',': 'б',
+          '.': 'ю',
+          '/': '.',
+          'up': 'up',
+          'ru': 'en',
+          'ctrl': 'ctrl',
+          'win': 'win',
+          'alt': 'alt',
+          'space': " ",
+          'left': 'left',
+          'down': 'down',
+          'right': 'right',
+        }
+};
+
 let keysContainer;
 let main;
 let keyElement;
@@ -109,12 +254,24 @@ function createKeys() {
         if (insertLineBreak) {
             fragment.appendChild(document.createElement("br"));
         };
+    // Добавление attributes кнопкам клавиатуры для смены языка клавиатуры
+        keyElement.setAttribute("data-i18", keyElement.innerHTML);
+
     });
         return fragment;
 };
+
+    // Перевод клавиатуры на русский / английский язык
+function getTranslate () {
+    const allElenemtData = document.querySelectorAll('[data-i18]');
+    const rulanguage = document.querySelector('.keyboard__key--ru');
+        rulanguage.addEventListener('click', () => {
+        allElenemtData.forEach((element) => element.textContent = i18Obj[rulanguage.innerHTML][element.dataset.i18]);
+})};
 
     // Загрузка страницы
     window.addEventListener("DOMContentLoaded", function () {
     init();
     createKeys();
+    getTranslate ();
 });

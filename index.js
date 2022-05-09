@@ -242,7 +242,7 @@ function createKeys() {
                     keyElement.innerHTML = "ctrl";
                     break;
                  case "ru":
-                    keyElement.classList.add("keyboard__key--ru");
+                    keyElement.classList.add("keyboard__key--language");
                     keyElement.setAttribute("data-language", "ru");
                     keyElement.innerHTML = "ru";
                     break;
@@ -254,24 +254,61 @@ function createKeys() {
         if (insertLineBreak) {
             fragment.appendChild(document.createElement("br"));
         };
+
     // Добавление attributes кнопкам клавиатуры для смены языка клавиатуры
         keyElement.setAttribute("data-i18", keyElement.innerHTML);
 
     });
-        return fragment;
+    return fragment;
 };
 
     // Перевод клавиатуры на русский / английский язык
 function getTranslate () {
     const allElenemtData = document.querySelectorAll('[data-i18]');
-    const rulanguage = document.querySelector('.keyboard__key--ru');
-        rulanguage.addEventListener('click', () => {
-        allElenemtData.forEach((element) => element.textContent = i18Obj[rulanguage.innerHTML][element.dataset.i18]);
-})};
+        language = document.querySelector('.keyboard__key--language');
+        
+        if (lang === 'ru') {
+                allElenemtData.forEach((element) => element.textContent = i18Obj[language.innerHTML][element.dataset.i18]);
+        };
 
+        language.addEventListener('click', () => {
+            allElenemtData.forEach((element) => element.textContent = i18Obj[language.innerHTML][element.dataset.i18]);
+            if (language.textContent === 'en') {
+                lang = 'ru';
+            } else {
+                lang = 'en';
+            };
+        });
+};
+    
     // Загрузка страницы
-    window.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("DOMContentLoaded", function () {
     init();
     createKeys();
+    getLocalStorage ();
     getTranslate ();
 });
+
+    // Перезагрузка страницы
+window.addEventListener('beforeunload', setLocalStorage);
+
+    // Local Storage отправить/получить данные
+function setLocalStorage () {
+    localStorage.setItem('lang', lang);
+};
+
+    // Local Storage получить данные
+function getLocalStorage () {
+    lang = localStorage.getItem('lang');
+};
+
+
+
+
+
+
+
+
+
+
+
